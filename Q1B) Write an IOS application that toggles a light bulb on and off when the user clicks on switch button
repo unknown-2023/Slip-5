@@ -1,1 +1,69 @@
+Activity_main.xml
 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".MainActivity">
+<ToggleButton
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/toggle"
+android:textOff="power off"
+android:textOn="power on"
+android:drawableStart="@drawable/selector"
+android:layout_marginTop="40dp"/>
+<ImageView
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/imageView"
+android:layout_marginTop="20dp"/>
+
+</LinearLayout>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Selector.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:state_checked="true" android:drawable="@drawable/img_1"/>
+
+<item android:state_checked="false" android:drawable="@drawable/img"/>
+</selector>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MainActivity.java
+
+package com.example.mybulb;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+public class MainActivity extends AppCompatActivity {
+ToggleButton toggleButton;
+ImageView imageView;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+toggleButton=findViewById(R.id.toggle);
+imageView=findViewById(R.id.imageView);
+
+imageView.setImageDrawable(getResources().getDrawable(R.drawable.img));
+
+toggleButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+if (toggleButton.isChecked()) {
+imageView.setImageDrawable(getResources().getDrawable(R.drawable.img));
+}
+else {
+imageView.setImageDrawable(getResources().getDrawable(R.drawable.img_1));
+}
+
+}
+});
+}
+}
